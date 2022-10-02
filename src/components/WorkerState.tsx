@@ -6,12 +6,23 @@ import { Context } from "../GlobalStore";
 const WorkerState = () => {
     const { state } = useContext(Context);
     
+    const workerCount = state.appData.workers.length;
+    const idleWorkerCount = state.appData.workers.filter((worker) => {
+        worker.status === 'IDLE';
+    });
+
     return (
         <div>
             <div>
                 <div>Workers</div>
                 <div>
-                    <h4>{state.appData.workers.length}</h4>
+                    <h4>{workerCount}</h4>
+                </div>
+            </div>
+            <div>
+            <div>Idle Workers</div>
+                <div>
+                    <h4>{idleWorkerCount}</h4>
                 </div>
             </div>
         </div>

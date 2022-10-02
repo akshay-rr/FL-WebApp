@@ -1,19 +1,6 @@
 import React, { createContext } from "react";
-import { LOAD_TASKS, SET_APP_DATA, SET_TASKS } from "./actions/Actions";
-
-export interface AppState {
-    appData: {
-        tasks: any[],
-        results: any,
-        workers: any[]
-    };
-    loading: boolean;
-}
-
-export interface AppAction {
-    type: string;
-    payload?: any;
-}
+import { LOAD_TASKS, SET_APP_DATA } from "./actions/Actions";
+import { AppState, AppAction } from "./types/Types";
 
 export const initialState = {
     appData: {
@@ -33,16 +20,6 @@ export const reducer = (state: AppState, action: AppAction) => {
                 appData: action.payload,
                 loading: false
             }
-
-        case SET_TASKS:
-            return {
-                ...state,
-                appData: {
-                    ...state.appData,
-                    tasks: action.payload
-                },
-                loading: false
-            };
         
         case LOAD_TASKS:
             return {

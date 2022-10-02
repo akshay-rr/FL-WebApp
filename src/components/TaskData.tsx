@@ -1,6 +1,6 @@
+import { Task, TaskResult } from "../types/Types";
 
-const TaskData = (props: any) => {
-
+const TaskData = (props: { taskData: Task, taskResult: TaskResult[] }) => {
     const { taskData, taskResult } = props;
 
     const completionRate = getCompletionRate(taskData, taskResult);
@@ -25,7 +25,7 @@ const TaskData = (props: any) => {
     );
 }
 
-const getCompletionRate = (taskData: any, taskResult: any) => {
+const getCompletionRate = (taskData: Task, taskResult: TaskResult[]) => {
     if(taskResult) {
 
     } else {

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Context } from "../GlobalStore";
+import { Results, Task, TaskResult } from "../types/Types";
 import TaskData from "./TaskData";
 
 
@@ -44,15 +45,15 @@ const AppDataStateComponent = () => {
 }
 
 
-const getCompletionRate = (tasks: any, results: any) => {
+const getCompletionRate = (tasks: Task[], results: Results) => {
     let totalFiles = 0;
     let completedFiles = 0;
 
-    tasks.forEach((element: any) => {
+    tasks.forEach((element: Task) => {
         totalFiles += element.M;
     });
 
-    Object.values(results).forEach((element: any) => {
+    Object.values(results).forEach((element: TaskResult[]) => {
         completedFiles += element.length;
     });
 
@@ -63,12 +64,12 @@ const getCompletionRate = (tasks: any, results: any) => {
     return completedFiles / totalFiles * 100;
 }
 
-const getCurrentAverage = (results: any) => {
+const getCurrentAverage = (results: Results) => {
     let totalLength = 0;
     let totalSum = 0;
 
-    Object.values(results).forEach((element: any) => {
-        element.forEach((fileData: any) => {
+    Object.values(results).forEach((element: TaskResult[]) => {
+        element.forEach((fileData: TaskResult) => {
             totalLength += fileData.fileSize;
             totalSum += fileData.fileSize * fileData.result
         })
