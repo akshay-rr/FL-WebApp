@@ -8,7 +8,7 @@ const WorkerState = () => {
     
     const workerCount = state.appData.workers.length;
     const idleWorkerCount = state.appData.workers.filter((worker) => {
-        worker.status === 'IDLE';
+        return worker.status === 'IDLE';
     }).length;
 
     return (
