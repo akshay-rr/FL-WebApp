@@ -2,7 +2,7 @@ import { useState, useReducer, useEffect } from 'react';
 import { Context, reducer, initialState } from './GlobalStore';
 import './App.css';
 import { loadTasks, setAppData } from './actions/Actions';
-import { createTaskCall, getAppStateCall } from './services/TaskService';
+import { createTaskCall, getAppStateCall, spawnWorkersCall } from './services/TaskService';
 import AppDataStateComponent from './components/AppDataStateComponent';
 
 import { w3cwebsocket as W3CWebSocket } from "websocket";
@@ -26,6 +26,16 @@ function App() {
     const createTask = () => {
         dispatch(loadTasks());
         createTaskCall(parseInt(M)).then((response) => {
+            dispatch(setAppData(response));
+        }).catch((e) => {
+            console.log('Failed');
+            console.log(e);
+        });
+    }
+
+    const spawnWorkers = () => {
+        dispatch(loadTasks());
+        spawnWorkersCall(parseInt(N)).then((response) => {
             dispatch(setAppData(response));
         }).catch((e) => {
             console.log('Failed');
@@ -92,7 +102,7 @@ function App() {
                                 <span className="input-group-text" id="inputGroup-sizing-sm">N</span>
                                 <input type="number" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" 
                                     onChange={(e) => setN(e.currentTarget.value)} />
-                                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Spawn Workers</button>
+                                <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={spawnWorkers}>Spawn Workers</button>
                             </div>
                             <div>
                                 {
