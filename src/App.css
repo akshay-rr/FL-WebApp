@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding: 1em;
 }
 
 .App-logo {
@@ -35,4 +36,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Custom */
+.dynamofl-container {
+    text-align: left;
+}
+
+.card {
+    margin-bottom: 1em !important;
 }
