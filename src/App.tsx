@@ -68,12 +68,6 @@ function App() {
                 }
 
             };
-
-            // client.send(JSON.stringify({
-            //     sender: 'web_client',
-            //     action: 'TEST',
-            //     data: 'hello' 
-            // }));
         }
     }, []);
 
